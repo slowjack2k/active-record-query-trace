@@ -34,6 +34,7 @@ module ActiveRecordQueryTrace
           return if payload[:name] == 'SCHEMA'
           return if ActiveRecordQueryTrace.ignore_cached_queries && payload[:name] == 'CACHE'
 
+          debug(color("SQL: \n  ", MAGENTA, true) + event.payload[:sql])
           debug(color("Called from: \n  ", MAGENTA, true) + clean_trace(caller)[index].join("\n  "))
         end
       end
